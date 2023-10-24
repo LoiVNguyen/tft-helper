@@ -1,7 +1,9 @@
+import re
 import cv2
 import pytesseract 
 import numpy as np
 from PIL import ImageGrab, Image
+from website_scraper import grab_augments_table, convert_augments_data, LOLCHESS
 
 
 # Returns full PIL Image.
@@ -45,6 +47,26 @@ def get_augments(image: Image) -> list[str]:
     return None
 
 
+# Gets augment data from lolchess given text found from augment round.
+def _get_augments_data(text: str) -> list[str]:
+    data = convert_augments_data(grab_augments_table(LOLCHESS))
+    text = text.replace("+", "Plus")
+    
+    found = []
+    for augment in data:
+        pattern = r"\b{}\b".format(augment)
+        pattern = re.compile(pattern)
+        
+        match = re.search(pattern, text)
+        if match:
+            found.append((augment, match.start()))
+
+    found.sort(key=lambda x: x[1])
+    augments = [(augment[0], data[augment[0]]) for augment in found]
+
+    return augments
+            
+
 # Grabs text (augments or round) from image. 
 def _get_text_from_image(image: np.array, check_augment: bool) -> None:
     if check_augment:
@@ -56,6 +78,3 @@ def _get_text_from_image(image: np.array, check_augment: bool) -> None:
         text = pytesseract.image_to_string(image, lang='eng', config="--psm 6, oem 1")
     
     return text
-
-
-# get_augments(get_image())

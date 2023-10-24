@@ -27,6 +27,8 @@ def convert_augments_data(table_data):
         win_rate = augment.find(class_ = "winrate").text.strip()
         pick_rate = augment.find(class_ = "pickrate").text.strip()
         games = augment.find(class_ = "games").text.strip()
+    
+        name = name.replace('+', "Plus")
         augments_data[name] = (avg_rank, first_pick, second_pick, third_pick, top_rate, win_rate, pick_rate, games)
 
     return augments_data
