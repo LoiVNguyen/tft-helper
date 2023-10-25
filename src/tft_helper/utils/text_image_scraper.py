@@ -3,7 +3,7 @@ import cv2
 import pytesseract 
 import numpy as np
 from PIL import ImageGrab, Image
-from website_scraper import grab_augments_table, convert_augments_data, LOLCHESS
+from .website_scraper import grab_augments_table, convert_augments_data, LOLCHESS
 
 
 # Returns full PIL Image.
@@ -44,7 +44,7 @@ def get_augments(image: Image) -> list[str]:
     cropped = image.crop((left, top, right, bottom))
     text = _get_text_from_image(np.array(cropped), False)
 
-    return None
+    return _get_augments_data(text)
 
 
 # Gets augment data from lolchess given text found from augment round.
