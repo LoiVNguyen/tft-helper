@@ -52,6 +52,8 @@ def _get_augments_data(text: str) -> list[str]:
     data = convert_augments_data(grab_augments_table(LOLCHESS))
     text = text.replace("+", "Plus")
     text = text.replace("|", "I")
+    text = text.replace("Ill", "III")
+    text = text.replace("Il", "II")
     found = []
     for augment in data:
         pattern = r"\b{}\b".format(augment)
@@ -76,5 +78,5 @@ def _get_text_from_image(image: np.array, check_augment: bool) -> None:
         image = cv2.threshold(image, 130, 255, cv2.THRESH_BINARY_INV)[1]
  
         text = pytesseract.image_to_string(image, lang='eng', config="--psm 6, oem 1")
-    
+    print(text)
     return text

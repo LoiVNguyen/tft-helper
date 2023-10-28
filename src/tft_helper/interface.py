@@ -21,6 +21,7 @@ class TFTWidget(QtWidgets.QWidget):
         timer = QtCore.QTimer(self)
         timer.timeout.connect(self.frame)
         timer.start()
+        self.x = 0
 
 
     def set_widget_dimensions(self):
@@ -62,5 +63,7 @@ class TFTWidget(QtWidgets.QWidget):
             self.label1.setText("")
             self.label2.setText("")
             self.label3.setText("")
-
+        print(stats)
+        print(self.x)
+        self.x += 1
         # print(stats)
