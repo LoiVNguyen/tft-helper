@@ -51,6 +51,7 @@ def get_augments(image: Image) -> list[str]:
 def _get_augments_data(text: str) -> list[str]:
     data = convert_augments_data(grab_augments_table(LOLCHESS))
     text = text.replace("+", "Plus")
+    text = text.replace("!", " I")
     text = text.replace("|", "I")
     text = text.replace("Ill", "III")
     text = text.replace("Il", "II")

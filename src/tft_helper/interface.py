@@ -33,22 +33,19 @@ class TFTWidget(QtWidgets.QWidget):
     
     def set_label(self):
         self.hlayout = QtWidgets.QHBoxLayout(self)
-        self.hlayout.setSpacing(260)
+        self.hlayout.setSpacing(400)
         self.hlayout.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.label1 = QtWidgets.QLabel(self)
-        self.label1.setStyleSheet("color: white; font: bold 14px") 
-        self.label1.setGeometry(400, 100, 500, 200)
+        self.label1.setStyleSheet("color: white; font: bold 18px") 
         self.hlayout.addWidget(self.label1) 
 
         self.label2 = QtWidgets.QLabel(self)
-        self.label2.setStyleSheet("color: white; font: bold 14px")
-        self.label1.setGeometry(400, 100, 500, 200)
+        self.label2.setStyleSheet("color: white; font: bold 18px")
         self.hlayout.addWidget(self.label2)
 
         self.label3 = QtWidgets.QLabel(self)
-        self.label3.setStyleSheet("color: white; font: bold 14px")
-        self.label1.setGeometry(400, 100, 500, 200)
+        self.label3.setStyleSheet("color: white; font: bold 18px")
         self.hlayout.addWidget(self.label3)
 
 
