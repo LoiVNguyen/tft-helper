@@ -51,7 +51,7 @@ def get_augments(image: Image) -> list[str]:
 def _get_augments_data(text: str) -> list[str]:
     data = convert_augments_data(grab_augments_table(LOLCHESS))
     text = text.replace("+", "Plus")
-    
+    text = text.replace("|", "I")
     found = []
     for augment in data:
         pattern = r"\b{}\b".format(augment)

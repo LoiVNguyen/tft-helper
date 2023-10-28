@@ -31,14 +31,36 @@ class TFTWidget(QtWidgets.QWidget):
 
     
     def set_label(self):
-        self.vlayout = QtWidgets.QVBoxLayout(self)
-        self.vlayout.setAlignment(Qt.AlignmentFlag.AlignTop)
-        self.label = QtWidgets.QLabel(self)
-        self.label.setStyleSheet("color: white")
-        self.vlayout.addWidget(self.label)
+        self.hlayout = QtWidgets.QHBoxLayout(self)
+        self.hlayout.setSpacing(260)
+        self.hlayout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.label1 = QtWidgets.QLabel(self)
+        self.label1.setStyleSheet("color: white; font: bold 14px") 
+        self.label1.setGeometry(400, 100, 500, 200)
+        self.hlayout.addWidget(self.label1) 
+
+        self.label2 = QtWidgets.QLabel(self)
+        self.label2.setStyleSheet("color: white; font: bold 14px")
+        self.label1.setGeometry(400, 100, 500, 200)
+        self.hlayout.addWidget(self.label2)
+
+        self.label3 = QtWidgets.QLabel(self)
+        self.label3.setStyleSheet("color: white; font: bold 14px")
+        self.label1.setGeometry(400, 100, 500, 200)
+        self.hlayout.addWidget(self.label3)
 
 
     def frame(self):
         stats = get_augments(get_image())
-        self.label.setText(str(stats))
+        average_placements = [augment[1][0] for augment in stats]
+        if len(average_placements) == 3:
+            self.label1.setText(average_placements[0])
+            self.label2.setText(average_placements[1])
+            self.label3.setText(average_placements[2])
+        else:
+            self.label1.setText("")
+            self.label2.setText("")
+            self.label3.setText("")
 
+        # print(stats)
